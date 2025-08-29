@@ -23,7 +23,7 @@ function App() {
       <WagmiProvider config={config}>
         <QueryClientProvider client={queryClient}>
           <Router>
-            {/* <Navbar /> */}
+            <Navbar />  
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/dashboard" element={<Dashboard />} />

@@ -31,7 +31,6 @@ export default function Homepage() {
         </div>
       </div>
       <Section/> */}
-      <Button></Button>
     </div>
   );
 }
