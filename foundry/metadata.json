@@ -1,0 +1,15 @@
+{
+  "name": "TTREX #1",
+  "description": "TTREX fractional NFT representing property ownership.",
+  "image": "ipfs://bafkreicqqefiiabnqpp7323btnqjwhil3gxu746f3i3lif4do65k3pntta",
+  "attributes": [
+    {
+      "trait_type": "Collection",
+      "value": "TTREX"
+    },
+    {
+      "trait_type": "Type",
+      "value": "Fractional Property NFT"
+    }
+  ]
+}
