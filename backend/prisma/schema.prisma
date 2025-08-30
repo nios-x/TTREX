@@ -111,9 +111,9 @@ model SellProposal {
   fractionId    String
   creatorWallet Wallet     @relation("WalletSellProposals", fields: [walletId], references: [id])
   walletId      String
-  shardsForSale Int        // total shards the seller wants to sell
-  pricePerShard Float      // ETH per shard
-  remaining     Int        // shards left for sale
+  shardsForSale Int        
+  pricePerShard Float      
+  remaining     Int        
   executed      Boolean    @default(false)
   buyers        Json       @default("[]") // track buyers optionally
   createdAt     DateTime   @default(now())

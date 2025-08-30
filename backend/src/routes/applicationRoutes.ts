@@ -8,7 +8,6 @@ import * as daoController from '../controllers/daoController';
 import * as paymentController from '../controllers/paymentController';
 import uploadRouter from "./ipfs";
 import * as sellProposalRoutes from '../controllers/sellController'; // ✅ Import the new routes
-
 const router = Router();
 const upload = multer({ storage: multer.memoryStorage() });
 
@@ -39,6 +38,7 @@ router.post('/properties/:id/fractions/burn', fractionController.burnFractions);
 router.post('/properties/:id/fractions/unlock', fractionController.unlockProperty);
 router.post('/properties/:id/fractions/transfer', fractionController.transferShards);
 
+router.post('/fractions/sell', sellProposalRoutes.createSellProposal);
 // Marketplace / Listing routes
 router.get('/listings', marketplaceController.getListings);
 router.post('/listings', marketplaceController.createListing);

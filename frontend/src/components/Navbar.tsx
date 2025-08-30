@@ -101,6 +101,18 @@ const Navbar = () => {
                       </a>
                       </NavigationMenuLink>
                       <NavigationMenuLink asChild >
+                      <a href="/create-proposal"  className="mb-1  rounded-md text-left p-3 transition-colors hover:bg-muted/70" >
+                            <p className="mb-1 font-semibold">Create Proposal</p>
+                            <p className="text-sm text-muted-foreground">Willing to Sell at certain Price </p>
+                      </a>
+                      </NavigationMenuLink>
+                      <NavigationMenuLink asChild >
+                      <a href="/sell-proposal"  className="mb-1  rounded-md text-left p-3 transition-colors hover:bg-muted/70" >
+                            <p className="mb-1 font-semibold">Sell Proposal</p>
+                            <p className="text-sm text-muted-foreground">Willing to Sell at certain Price </p>
+                      </a>
+                      </NavigationMenuLink>
+                      <NavigationMenuLink asChild >
                         {isLoggedIn && <button onClick={handleLogout} className="mb-1 font-semibold rounded-md text-left p-3 transition-colors hover:bg-muted/70" >Logout</button>}
                       </NavigationMenuLink>
                     </div>

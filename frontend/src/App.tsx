@@ -18,6 +18,8 @@ import Fractionalise from "./pages/Fractionalise";
 import TransferShard from "./pages/TransferShards"
 import CoinbaseWalletSDK from '@coinbase/wallet-sdk';
 import { useEffect } from "react";
+import CreateProposal from "./pages/CreateProposal";
+import CreateSellProposal from "./pages/SellProposal";
 const queryClient = new QueryClient()
 function App() {
   useEffect(()=>{
@@ -42,6 +44,8 @@ function App() {
               <Route path="/fractions-dashboard" element={<TransferShard/>}></Route>
               <Route path="/tokenise" element={<TokenisePage/>}/>
               <Route path="/marketplace" element={<Marketplace />} />
+              <Route path="/create-proposal" element={<CreateProposal/>} />
+              <Route path="/sell-proposal" element={<CreateSellProposal/>} />
               <Route path="/dao" element={<DAO />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/login" element={<LoginForm />} />
