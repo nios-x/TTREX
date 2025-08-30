@@ -62,10 +62,10 @@ const Navbar = () => {
 
   return (
     <>
-      {location.pathname !== "/" && <div className="py-10"></div>}
+      {location.pathname !== "/" && <div className="py-10 "></div>}
       <section className="pt-4 pb-3 absolute w-full top-0 z-50 bg-[rgba(255,255,255,0.2)] backdrop:blur-3xl">
         <div className="container">
-          <nav className="flex items-center justify-between">
+          <nav className="flex items-center  justify-between">
             <Link to="/" className="flex items-center gap-2">
               <h1 className="font-bold text-3xl pl-4 pt-2 mf3">TTREX</h1>
             </Link>

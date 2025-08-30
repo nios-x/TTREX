@@ -156,16 +156,16 @@ export default function FractionsPage() {
       <h1 className="text-2xl font-bold mb-6">Fractions Dashboard</h1>
       <div className="flex gap-5 w-screen">
         {/* Transfer Section */}
-        <div className="max-w-lg p-4 border rounded-lg w-1/2">
+        <div className="max-w-lg p-4 border border-zinc-400 rounded-lg w-1/2">
           <h2 className="font-bold mb-4">Transfer Fractions</h2>
           <select
-            className="w-full p-2 border rounded mb-2"
+            className="w-full p-2 border border-zinc-400 rounded mb-2"
             value={transferFraction?.id || ""}
             onChange={e =>
               setTransferFraction(fractions.find(f => f.id === e.target.value) || null)
             }
           >
-            <option value="">Select your fraction</option>
+            <option value="" className="lg:rounded-full ">Select your fraction</option>
             {fractions
               .filter(f => f.owner?.address === address)
               .map(f => (
@@ -180,14 +180,14 @@ export default function FractionsPage() {
             placeholder="Recipient wallet address"
             value={recipient}
             onChange={e => setRecipient(e.target.value)}
-            className="mb-2"
+            className="mb-2 border border-zinc-400 "
           />
           <Input
             type="number"
             placeholder="Amount to transfer"
             value={transferAmount}
             onChange={e => setTransferAmount(Number(e.target.value))}
-            className="mb-4"
+            className="mb-4 border border-zinc-400 "
           />
           <Button onClick={handleTransfer} disabled={loading}>
             {loading ? "Transferring..." : "Transfer Fractions"}
@@ -195,10 +195,10 @@ export default function FractionsPage() {
         </div>
 
         {/* Unlock Section */}
-        <div className="max-w-lg p-4 border h-max rounded-lg w-1/2">
+        <div className="max-w-lg p-4 border border-zinc-400 h-max rounded-lg w-1/2">
           <h2 className="font-bold mb-4">Unlock Fractions</h2>
           <select
-            className="w-full p-2 border rounded mb-2"
+            className="w-full p-2 border border-zinc-400 rounded mb-2"
             value={unlockFraction?.id || ""}
             onChange={e =>
               setUnlockFraction(fractions.find(f => f.id === e.target.value) || null)

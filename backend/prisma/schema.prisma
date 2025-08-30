@@ -103,27 +103,22 @@ model Fraction {
   sellProposals SellProposal[] @relation("FractionSellProposals")
 
 }
-
-
 model SellProposal {
   id            String     @id @default(cuid())
-  
   property      Property   @relation("PropertySellProposals", fields: [propertyId], references: [id])
   propertyId    String
-  
   fraction      Fraction   @relation("FractionSellProposals", fields: [fractionId], references: [id])
   fractionId    String
-  
   creatorWallet Wallet     @relation("WalletSellProposals", fields: [walletId], references: [id])
   walletId      String
-
-  shardsForSale Int
+  shardsForSale Int        // total shards the seller wants to sell
   pricePerShard Float      // ETH per shard
   remaining     Int        // shards left for sale
   executed      Boolean    @default(false)
-  buyers        Json       @default("[]") // optional: track buyer addresses & amounts
+  buyers        Json       @default("[]") // track buyers optionally
   createdAt     DateTime   @default(now())
 }
+
 
 
 /// PROPOSAL MODEL

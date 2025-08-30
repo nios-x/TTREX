@@ -53,9 +53,9 @@ export default function RegisterForm({ className, ...props }: React.ComponentPro
               <div className="flex size-8 items-center justify-center rounded-md">
                 <GalleryVerticalEnd className="size-6" />
               </div>
-              <span className="sr-only">Acme Inc.</span>
+              <span className="sr-only"></span>
             </a>
-            <h1 className="text-xl font-bold">Welcome to Acme Inc.</h1>
+            <h1 className="text-xl font-bold">Welcome to TTREX</h1>
             <div className="text-center text-sm">
               {step === 1 ? "Enter your details to register" : "Enter the OTP sent to your email"}
             </div>
@@ -65,27 +65,26 @@ export default function RegisterForm({ className, ...props }: React.ComponentPro
             <>
               <div className="grid gap-3">
                 <Label htmlFor="firstName">First Name</Label>
-                <Input id="firstName" value={firstName} onChange={e => setFirstName(e.target.value)} required />
+                <Input id="firstName" className="border-zinc-500" value={firstName} onChange={e => setFirstName(e.target.value)} required />
               </div>
               <div className="grid gap-3">
                 <Label htmlFor="lastName">Last Name</Label>
-                <Input id="lastName" value={lastName} onChange={e => setLastName(e.target.value)} required />
+                <Input id="lastName" className="border-zinc-500" value={lastName} onChange={e => setLastName(e.target.value)} required />
               </div>
               <div className="grid gap-3">
                 <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} required />
+                <Input id="email" type="email" className="border-zinc-500" value={email} onChange={e => setEmail(e.target.value)} required />
               </div>
               <div className="grid gap-3">
                 <Label htmlFor="password">Password</Label>
-                <Input id="password" type="password" value={password} onChange={e => setPassword(e.target.value)} required />
+                <Input id="password" className="border-zinc-500" type="password" value={password} onChange={e => setPassword(e.target.value)} required />
               </div>
               <Button type="submit" className="w-full">Register</Button>
             </>
-          ) : (
-            <>
+          ) : (<>
               <div className="grid gap-3">
                 <Label htmlFor="otp">OTP</Label>
-                <Input id="otp" value={otp} onChange={e => setOtp(e.target.value)} required />
+                <Input id="otp" className="border-zinc-500" value={otp} onChange={e => setOtp(e.target.value)} required />
               </div>
               <Button type="submit" className="w-full">Verify OTP</Button>
             </>

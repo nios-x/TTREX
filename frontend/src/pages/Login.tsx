@@ -41,19 +41,19 @@ export default function LoginForm({ className, ...props }: React.ComponentProps<
               <div className="flex size-8 items-center justify-center rounded-md">
                 <GalleryVerticalEnd className="size-6" />
               </div>
-              <span className="sr-only">Acme Inc.</span>
+              <span className="sr-only">TTREX Inc.</span>
             </a>
-            <h1 className="text-xl font-bold">Login to Acme Inc.</h1>
+            <h1 className="text-xl font-bold">TTREX Login</h1>
           </div>
 
           <div className="grid gap-3">
             <Label htmlFor="email">Email</Label>
-            <Input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} required />
+            <Input id="email" placeholder="Email" className="border-zinc-400" type="email" value={email} onChange={e => setEmail(e.target.value)} required />
           </div>
 
           <div className="grid gap-3">
             <Label htmlFor="password">Password</Label>
-            <Input id="password" type="password" value={password} onChange={e => setPassword(e.target.value)} required />
+            <Input id="password"  placeholder="Password" className="border-zinc-400" type="password" value={password} onChange={e => setPassword(e.target.value)} required />
           </div>
 
           <Button type="submit" className="w-full">Login</Button>
