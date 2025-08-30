@@ -16,10 +16,20 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import TokenisePage from "./pages/TokenisePage"
 import Fractionalise from "./pages/Fractionalise";
 import TransferShard from "./pages/TransferShards"
+import CoinbaseWalletSDK from '@coinbase/wallet-sdk';
+import { useEffect } from "react";
 const queryClient = new QueryClient()
 function App() {
+  useEffect(()=>{
+    const sdk = new CoinbaseWalletSDK({
+      appName: 'SDK Playground',
+    });
+    const provider = sdk.makeWeb3Provider();
+  },[])
+  
+
   return (
-    <div className="relative">
+    <div className="relative bg-gradient-to-r min-h-[calc(100vh+20vh)] from-neutral-200 to-stone-300">
       <WagmiProvider config={config}>
         <QueryClientProvider client={queryClient}>
           <Router>

@@ -51,8 +51,8 @@ function NavigationMenuItem({
 }: React.ComponentProps<typeof NavigationMenuPrimitive.Item>) {
   return (
     <NavigationMenuPrimitive.Item
-      data-slot="navigation-menu-item"
-      className={cn("relative", className)}
+      data-slot="navigation-menu-item "
+      className={cn("relative overflow-hidden lg:rounded-xl", className)}
       {...props}
     />
   )

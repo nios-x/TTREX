@@ -118,7 +118,7 @@ export default function TokenisePage() {
           Tokenize your real estate property as an NFT for fractional ownership
         </p>
       </div>
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-6 ">
         <div className="space-y-4">
           <div>
             <Label htmlFor="title">Property Title</Label>
@@ -142,18 +142,17 @@ export default function TokenisePage() {
               value={formData.valuation}
               onChange={(e) => handleInputChange("valuation", e.target.value)}
               placeholder="0.00"
-              className="mt-2 w-1/3"
+              className="mt-2 w-1/3 "
               required
             />
           </div>
           <div>
             <Label htmlFor="description">Description</Label>
-            <Textarea
+            <Input
               id="description"
               value={formData.description}
               onChange={(e) => handleInputChange("description", e.target.value)}
               placeholder="Describe the property"
-              rows={4}
               className="mt-2 w-1/2 resize-none"
               required
             />
@@ -165,8 +164,9 @@ export default function TokenisePage() {
               type="file"
               accept="image/*"
               onChange={handleFileChange}
-              className="mt-2 w-1/2"
+              className="mt-2 w-max lg:py-1 lg:px-3 rounded-full"
               required
+              
             />
             {file && (
               <p className="mt-2 text-sm text-gray-500 dark:text-gray-400 flex items-center gap-2">

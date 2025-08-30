@@ -24,7 +24,7 @@ export const getFractions = async (req: Request, res: Response) => {
       where,
       include: {
         property: {
-          select: { id: true, title: true },
+          select: { id: true, title: true, description: true, imageUrl: true, valuation: true },
         },
         owner: {
           select: { address: true, user: { select: { firstName: true, lastName: true } } },

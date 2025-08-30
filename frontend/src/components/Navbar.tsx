@@ -23,8 +23,8 @@ const Navbar = () => {
   const features = [
     { title: "Dashboard", description: "Overview of your activity", href: "/dashboard" },
     { title: "Marketplace", description: "Buy & sell fractions", href: "/marketplace" },
-    { title: "DAO", description: "Vote on ownership decisions", href: "/dao" },
-    { title: "Properties", description: "View available properties", href: "/property/1" },
+    { title: "DAO", description: "Vote on ownership decisions", href: "/dao", blocked:true },
+    { title: "Properties", description: "View available properties", href: "/property/1", blocked:true },
   ];
   const { address } = useAccount()
   const { disconnect } = useDisconnect()
@@ -96,8 +96,8 @@ const Navbar = () => {
                       ))}
                       <NavigationMenuLink asChild >
                       <a href="/fractions-dashboard"  className="mb-1  rounded-md text-left p-3 transition-colors hover:bg-muted/70" >
-                            <p className="mb-1 font-semibold">Transfer Shards</p>
-                            <p className="text-sm text-muted-foreground">Send Shards to others</p>
+                            <p className="mb-1 font-semibold">Fractions Dashboard</p>
+                            <p className="text-sm text-muted-foreground">Send Shards to others or unlock</p>
                       </a>
                       </NavigationMenuLink>
                       <NavigationMenuLink asChild >
@@ -114,8 +114,8 @@ const Navbar = () => {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <NavigationMenuLink asChild>
-                    <Link to="/dao" className={navigationMenuTriggerStyle()}>DAO</Link>
+                  <NavigationMenuLink  asChild>
+                    <Link to="/dao"  className={navigationMenuTriggerStyle()}>DAO</Link>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
 
@@ -136,7 +136,7 @@ const Navbar = () => {
               ) : (
                 <>
                 {!address && <WalletOptions/>}
-                {address && <div className="text-xs w-0 -translate-x-65 pt-1">{ensName ? `${ensName} (${address})` : address}</div>}
+                {address && <div className="text-xs w-0 -translate-x-68 pt-1">{ensName ? `${ensName} (${address})` : address}</div>}
                 { address && <Button onClick={() => disconnect()}>Disconnect</Button>}
 
                 </>

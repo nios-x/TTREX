@@ -142,18 +142,21 @@ export default function Marketplace() {
       </div>
       </div>
     );
-  const renderShardCard = (shard: Shard) => (
+const renderShardCard = (shard: Shard & { property?: Property }) => {
+  // If property info is available (via backend join), use it; else fallback to IDs
+  const property = shard.property;
+  const propertyImage = property?.imageUrl
+    ? property.imageUrl.replace("ipfs://", "https://gateway.pinata.cloud/ipfs/")
+    : "https://via.placeholder.com/150";
+
+  return (
     <div
       key={shard.id}
       className={cn(
-        "flex flex-col",
-        "w-full",
-        "bg-white dark:bg-zinc-900/70",
-        "rounded-xl",
-        "border border-zinc-100 dark:border-zinc-800",
+        "flex flex-col w-full bg-white dark:bg-zinc-900/70",
+        "rounded-xl border border-zinc-100 dark:border-zinc-800",
         "hover:border-zinc-200 dark:hover:border-zinc-700",
-        "transition-all duration-200",
-        "shadow-sm backdrop-blur-xl"
+        "shadow-sm backdrop-blur-xl transition-all duration-200"
       )}
     >
       <div className="p-4 space-y-3">
@@ -166,32 +169,43 @@ export default function Marketplace() {
           </span>
         </div>
 
+        <img src={propertyImage} alt={property?.title || "Property Image"} className="w-full h-32 object-cover rounded-lg" />
+
         <div>
           <h3 className="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-1">
-            Shard #{shard.id.slice(0, 6)}...
+            {property?.title || `Property #${shard.propertyId.slice(0, 6)}...`}
           </h3>
           <p className="text-xs text-zinc-600 dark:text-zinc-400 line-clamp-2">
-            Property ID: {shard.propertyId}
+            {property?.description || "Fractional property shard"}
           </p>
-          <p className="text-xs text-zinc-600 dark:text-zinc-400">
+        </div>
+
+        {property && (
+          <div className="flex items-center gap-1.5">
+            <span className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
+              ₹{property.valuation.toLocaleString()}
+            </span>
+            <span className="text-xs text-zinc-600 dark:text-zinc-400">valuation</span>
+          </div>
+        )}
+
+        <div>
+          <p className="text-xs text-zinc-700 dark:text-zinc-100">
             Owner: {shard.walletId.slice(0, 6)}...
           </p>
         </div>
 
-        <div className="flex items-center gap-1.5">
-          <span className="text-xs text-zinc-500 dark:text-zinc-400">
-            Minted: {new Date(shard.createdAt).toLocaleString()}
-          </span>
+        <div className="flex items-center gap-1.5 text-xs text-zinc-500 dark:text-zinc-400">
+          <Calendar className="w-3.5 h-3.5" />
+          <span>Minted: {new Date(shard.createdAt).toLocaleDateString()}</span>
         </div>
       </div>
 
       <div className="mt-auto border-t border-zinc-100 dark:border-zinc-800">
         <button
           className={cn(
-            "w-full flex items-center justify-center gap-2",
-            "py-2.5 px-3",
-            "text-xs font-medium",
-            "text-zinc-600 dark:text-zinc-400",
+            "w-full flex items-center justify-center gap-2 py-2.5 px-3",
+            "text-xs font-medium text-zinc-600 dark:text-zinc-400",
             "hover:text-zinc-900 dark:hover:text-zinc-100",
             "hover:bg-zinc-100 dark:hover:bg-zinc-800/50",
             "transition-colors duration-200"
@@ -203,9 +217,13 @@ export default function Marketplace() {
       </div>
     </div>
   );
+};
+
+
+
 
   return (
-    <div className="min-h-screen p-6">
+    <div className="min-h-screen p-6 ">
       <div className="flex justify-between items-center mb-6">
         <div className="flex gap-4">
           <button

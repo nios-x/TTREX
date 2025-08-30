@@ -142,28 +142,68 @@ export default function Dashboard() {
     </div>
   );
 
-  const renderFractionCard = (fraction: Fraction) => (
-    <div key={fraction.id} className={cn("flex flex-col w-full bg-white dark:bg-zinc-900/70 rounded-xl border border-zinc-100 dark:border-zinc-800 shadow-sm backdrop-blur-xl hover:border-zinc-200 dark:hover:border-zinc-700 transition-all duration-200")}>
-      <div className="p-4 space-y-3">
-        <div className="flex items-start justify-between">
-          <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100">
-            <Layers className="w-4 h-4" />
+   const renderFractionCard = (shard: any) => (
+      <div
+        key={shard.id}
+        className={cn(
+          "flex flex-col",
+          "w-full",
+          "bg-white dark:bg-zinc-900/70",
+          "rounded-xl",
+          "border border-zinc-100 dark:border-zinc-800",
+          "hover:border-zinc-200 dark:hover:border-zinc-700",
+          "transition-all duration-200",
+          "shadow-sm backdrop-blur-xl"
+        )}
+      >
+        <div className="p-4 space-y-3">
+          <div className="flex items-start justify-between">
+            <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100">
+              <Layers className="w-4 h-4" />
+            </div>
+            <span className="px-2 py-1 rounded-full text-xs font-medium bg-zinc-100 dark:bg-zinc-800">
+              {shard.supply.toLocaleString()} Shards
+            </span>
           </div>
-          <span className="px-2 py-1 rounded-full text-xs font-medium bg-zinc-100 dark:bg-zinc-800">
-            {fraction.supply.toLocaleString()} Shards
-          </span>
+  
+          <div>
+            <h3 className="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-1">
+              Shard #{shard.id.slice(0, 6)}...
+            </h3>
+            <p className="text-xs text-zinc-600 dark:text-zinc-400 line-clamp-2">
+              Property ID: {shard.propertyId}
+            </p>
+            <p className="text-xs text-zinc-600 dark:text-zinc-400">
+              Owner: {shard.walletId.slice(0, 6)}...
+            </p>
+          </div>
+  
+          <div className="flex items-center gap-1.5">
+            <span className="text-xs text-zinc-500 dark:text-zinc-400">
+              Minted: {new Date(shard.createdAt).toLocaleString()}
+            </span>
+          </div>
         </div>
-
-        <div>
-          <h3 className="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-1">
-            {fraction.property.title}
-          </h3>
-          <p className="text-xs text-zinc-600 dark:text-zinc-400 line-clamp-2">{fraction.property.description}</p>
-          
+  
+        <div className="mt-auto border-t border-zinc-100 dark:border-zinc-800">
+          <Link to={"/"}
+            className={cn(
+              "w-full flex items-center justify-center gap-2",
+              "py-2.5 px-3",
+              "text-xs font-medium",
+              "text-zinc-600 dark:text-zinc-400",
+              "hover:text-zinc-900 dark:hover:text-zinc-100",
+              "hover:bg-zinc-100 dark:hover:bg-zinc-800/50",
+              "transition-colors duration-200"
+            )}
+          >
+            Buy Shards
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
         </div>
       </div>
-    </div>
-  );
+    );
+  
 
   const renderproposalsCard = (proposals: proposals) => (
     <div key={proposals.id} className={cn("flex flex-col w-full bg-white dark:bg-zinc-900/70 rounded-xl border border-zinc-100 dark:border-zinc-800 shadow-sm backdrop-blur-xl hover:border-zinc-200 dark:hover:border-zinc-700 transition-all duration-200")}>

@@ -23,6 +23,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import gsap from "gsap"
 import { useTheme } from "next-themes"
 export default function LandingPage() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -245,8 +246,8 @@ export default function LandingPage() {
                 },
               ].map((feature, i) => (
                 <motion.div key={i} variants={item}>
-                  <Card className="h-full overflow-hidden border-border/40 bg-gradient-to-b from-background to-muted/10 backdrop-blur transition-all hover:shadow-md">
-                    <CardContent className="p-6 flex flex-col h-full">
+                  <Card className="h-full  overflow-hidden  border-border/40 bg-gradient-to-b from-background to-muted/10 backdrop-blur transition-all hover:shadow-md">
+                    <CardContent className="p-6 flex  flex-col h-full">
                       <div className="size-10 rounded-full  flex items-center justify-center text-primary mb-4 text-2xl">
                         {feature.icon}
                       </div>

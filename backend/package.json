@@ -14,6 +14,7 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "@coinbase/wallet-sdk": "^4.3.7",
     "@prisma/client": "^6.14.0",
     "@radix-ui/react-tabs": "^1.1.13",
     "@types/bcrypt": "^6.0.0",
