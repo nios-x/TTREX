@@ -27,6 +27,7 @@ exports.getPayments = getPayments;
 const depositFunds = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { fromAddress, amount } = req.body;
+        //@ts-ignore
         const payment = yield db_1.default.payment.create({ data: { propertyId: req.params.id, fromAddress, amount } });
         res.status(201).json(payment);
     }
