@@ -16,12 +16,7 @@ import path from "path";
     })
   );
   app.use(express.static(path.join(__dirname, 'build')));
-
-
-  
-  
-
-
+console.log(path.join(__dirname, 'build'))
   dotenv.config({
     "path": ".env"
   });
