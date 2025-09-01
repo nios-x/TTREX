@@ -157,6 +157,16 @@ CREATE TABLE "public"."PasswordReset" (
     CONSTRAINT "PasswordReset_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "public"."TokenMapping" (
+    "id" TEXT NOT NULL,
+    "dbId" TEXT NOT NULL,
+    "tokenId" INTEGER NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "TokenMapping_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "public"."User"("email");
 

@@ -179,3 +179,11 @@ enum TxType {
   FRACTIONALISE
   UNLOCK
 }
+
+/// Simple key-value mapping between DB IDs and on-chain token IDs
+model TokenMapping {
+  id        String   @id @default(cuid())  // internal DB ID
+  dbId      String   // the DB-generated ID (Property or Fraction)
+  tokenId   Int      // corresponding on-chain ERC1155 tokenId
+  createdAt DateTime @default(now())
+}

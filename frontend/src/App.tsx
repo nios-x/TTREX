@@ -16,18 +16,11 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import TokenisePage from "./pages/TokenisePage"
 import Fractionalise from "./pages/Fractionalise";
 import TransferShard from "./pages/TransferShards"
-import CoinbaseWalletSDK from '@coinbase/wallet-sdk';
-import { useEffect } from "react";
 import CreateProposal from "./pages/CreateProposal";
 import CreateSellProposal from "./pages/SellProposal";
 const queryClient = new QueryClient()
 function App() {
-  useEffect(()=>{
-    const sdk = new CoinbaseWalletSDK({
-      appName: 'SDK Playground',
-    });
-    const provider = sdk.makeWeb3Provider();
-  },[])
+
   
 
   return (

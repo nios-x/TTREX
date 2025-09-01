@@ -29,6 +29,7 @@ export default function FractionsPage() {
   const [transferAmount, setTransferAmount] = useState<number>(0);
   const [recipient, setRecipient] = useState("");
   const [loading, setLoading] = useState(false);
+  const [paid, setPaid] = useState(false);
   const { address } = useAccount();
 
   // Fetch fractions
@@ -65,6 +66,8 @@ export default function FractionsPage() {
         }
       );
 
+        setPaid(true)
+        setTimeout(() => setPaid(false), 3000);
       const data = await res.json();
       if (res.ok) {
         toast.success("Fractions transferred successfully");
@@ -102,7 +105,6 @@ export default function FractionsPage() {
 
           return updated;
         });
-
         setTransferAmount(0);
         setRecipient("");
         setTransferFraction(null);
@@ -135,15 +137,18 @@ export default function FractionsPage() {
       if (res.ok) {
         toast.success(`Fractions unlocked! TxHash: ${data.txHash}`);
 
-        // Remove unlocked fractions from state
         setFractions(prev =>
           prev.filter(f => f.propertyId !== unlockFraction.propertyId)
         );
-
+        
         setUnlockFraction(null);
       } else {
         toast.error(data.error || "Unlock failed");
       }
+    
+      
+      setPaid(true)
+      setTimeout(() => setPaid(false), 3000);
     } catch (err) {
       console.error(err);
       toast.error("Unlock failed");
@@ -151,10 +156,23 @@ export default function FractionsPage() {
     setLoading(false);
   };
 
+  useEffect(() => {
+    if (paid) {
+      const timer = setTimeout(() => setPaid(false), 3000);
+      return () => clearTimeout(timer);
+    } }, [paid]);
+
   return (
-    <div className="min-h-screen p-6">
-      <h1 className="text-2xl font-bold mb-6">Fractions Dashboard</h1>
-      <div className="flex gap-5 w-screen">
+    <div className="min-h-screen p-6 relative">
+     {paid && (
+  <img
+    className="h-32 w-32 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50"
+    src="/canva.webp"
+    alt="Payment Success"
+  />
+)}
+      <h1 className="text-2xl flex justify-center font-bold mb-6">Fractions Dashboard</h1>
+      <div className="gap-5 w-screen flex flex-col justify-center items-center">
         {/* Transfer Section */}
         <div className="max-w-lg p-4 border border-zinc-400 rounded-lg w-1/2">
           <h2 className="font-bold mb-4">Transfer Fractions</h2>
@@ -165,7 +183,7 @@ export default function FractionsPage() {
               setTransferFraction(fractions.find(f => f.id === e.target.value) || null)
             }
           >
-            <option value="" className="lg:rounded-full ">Select your fraction</option>
+            <option value="">Select your fraction</option>
             {fractions
               .filter(f => f.owner?.address === address)
               .map(f => (
@@ -180,14 +198,14 @@ export default function FractionsPage() {
             placeholder="Recipient wallet address"
             value={recipient}
             onChange={e => setRecipient(e.target.value)}
-            className="mb-2 border border-zinc-400 "
+            className="mb-2 border border-zinc-400"
           />
           <Input
             type="number"
             placeholder="Amount to transfer"
             value={transferAmount}
             onChange={e => setTransferAmount(Number(e.target.value))}
-            className="mb-4 border border-zinc-400 "
+            className="mb-4 border border-zinc-400"
           />
           <Button onClick={handleTransfer} disabled={loading}>
             {loading ? "Transferring..." : "Transfer Fractions"}

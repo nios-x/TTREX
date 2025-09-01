@@ -60,6 +60,7 @@ router.post('/properties/:id/payments/distribute', paymentController.distributeF
 router.use("/upload", uploadRouter);
 
 // ✅ Mount SellProposal routes
-router.use("/sell-proposals", sellProposalRoutes.createSellProposal);
+router.post("/sell-proposals", sellProposalRoutes.createSellProposal);
+router.get("/sell-proposals", sellProposalRoutes.getSellProposals);
 
 export default router;

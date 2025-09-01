@@ -21,7 +21,7 @@ import { useDisconnect } from "wagmi";
 import { useEffect } from "react";
 const Navbar = () => {
   const features = [
-    { title: "Dashboard", description: "Overview of your activity", href: "/dashboard" },
+    { title: "Owners Dashboard", description: "Overview of your activity", href: "/dashboard" },
     { title: "Marketplace", description: "Buy & sell fractions", href: "/marketplace" },
     { title: "DAO", description: "Vote on ownership decisions", href: "/dao", blocked:true },
     { title: "Properties", description: "View available properties", href: "/property/1", blocked:true },
@@ -42,18 +42,16 @@ const Navbar = () => {
   useEffect(()=>{
     const fetcher = async()=>{
       if(address){
-        const res = await fetch(`${import.meta.env.VITE_BACKEND}/wallet/upsert`,{
+        await fetch(`${import.meta.env.VITE_BACKEND}/wallet/upsert`,{
           method:"POST",
           headers:{
             "Content-Type":"application/json",
             "Authorization": `Bearer ${token}`
           },
-          
           body:JSON.stringify({address}),
           credentials:"include",
 
         })
-        const data = await res.json()
       }
     } 
     fetcher()
@@ -83,6 +81,12 @@ const Navbar = () => {
                   <NavigationMenuTrigger>Features</NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <div className="grid w-[600px] grid-cols-2 p-3">
+                      <NavigationMenuLink asChild >
+                      <a href="/fractions-dashboard"  className="mb-1  rounded-md text-left p-3 transition-colors hover:bg-muted/70" >
+                            <p className="mb-1 font-semibold">Fractions Dashboard</p>
+                            <p className="text-sm text-muted-foreground">Send Shards to others or unlock</p>
+                      </a>
+                      </NavigationMenuLink>
                       {features.map((feature, index) => (
                         <NavigationMenuLink asChild key={index}>
                           <Link
@@ -94,12 +98,6 @@ const Navbar = () => {
                           </Link>
                         </NavigationMenuLink>
                       ))}
-                      <NavigationMenuLink asChild >
-                      <a href="/fractions-dashboard"  className="mb-1  rounded-md text-left p-3 transition-colors hover:bg-muted/70" >
-                            <p className="mb-1 font-semibold">Fractions Dashboard</p>
-                            <p className="text-sm text-muted-foreground">Send Shards to others or unlock</p>
-                      </a>
-                      </NavigationMenuLink>
                       <NavigationMenuLink asChild >
                       <a href="/create-proposal"  className="mb-1  rounded-md text-left p-3 transition-colors hover:bg-muted/70" >
                             <p className="mb-1 font-semibold">Create Proposal</p>

@@ -160,3 +160,11 @@
   button{
     cursor: pointer;  
   }
+  input{
+    background: #ececec;
+  }
+  
+  select{
+    background: #ececec;
+    border-radius: 20px;
+  }
