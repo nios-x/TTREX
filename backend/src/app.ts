@@ -15,7 +15,7 @@ import path from "path";
       credentials: true,               // allow cookies & Authorization headers
     })
   );
-  app.use(express.static(path.join(__dirname, 'dist')));
+  app.use(express.static(path.join(__dirname, 'build')));
 
 
   
@@ -33,7 +33,7 @@ import path from "path";
   app.use('/wallet', requireAuth, walletRoutes);
 
   app.get('/',(req,res)=>{
-    res.sendFile(path.join(__dirname , "/dist/index.html"))
+    res.sendFile(path.join(__dirname , "/build/index.html"))
   })
 
   app.get("/profile", requireAuth, (req, res) => {

@@ -36,6 +36,7 @@ export const createSellProposal = async (req: Request, res: Response) => {
 
     // Ensure numeric token IDs exist
     const propertyToken = fraction.property.tokenId;
+    //@ts-ignore
     const fractionToken = fraction.tokenId;
     if (!propertyToken || !fractionToken) {
       return res.status(500).json({ error: "Property or Fraction not mapped to tokenId" });
@@ -87,6 +88,7 @@ export const buySellProposal = async (req: Request, res: Response) => {
     }
 
     // Use numeric fraction token
+    //@ts-ignore
     const fractionToken = proposal.fraction.tokenId;
     if (!fractionToken) return res.status(500).json({ error: "Fraction not mapped to tokenId" });
 
@@ -113,6 +115,7 @@ export const buySellProposal = async (req: Request, res: Response) => {
       });
     } else {
       buyerFraction = await prisma.fraction.create({
+        //@ts-ignore
         data: { propertyId: proposal.propertyId, walletId: buyerWallet.id, supply: shardsToBuy, tokenId: fractionToken },
       });
     }

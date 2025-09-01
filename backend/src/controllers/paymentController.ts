@@ -18,6 +18,7 @@ export const getPayments = async (req: Request, res: Response) => {
 export const depositFunds = async (req: Request, res: Response) => {
     try {
         const { fromAddress, amount } = req.body;
+        //@ts-ignore
         const payment = await prisma.payment.create({ data: { propertyId: req.params.id, fromAddress, amount } });
         res.status(201).json(payment);
     } catch (err) {
